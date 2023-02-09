@@ -1,0 +1,10 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: default
+  name: default-clusterrole
+rules:
+  - apiGroups: [""] # "" indicates the core API group
+    resources: ["services"]
+    verbs:
+      - "*"

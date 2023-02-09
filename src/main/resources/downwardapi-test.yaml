@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: downwardapi-test
+spec:
+  containers:
+    - name: downwardapi-test
+      image: danielxin92/downwardapi-test
+      volumeMounts:
+        - name: downwardapi
+          mountPath: /etc/downwardapi/
+  volumes:
+    - name: downwardapi
+      downwardAPI:
+        items:
+          - path: "annotations"
+            fieldRef:
+              fieldPath: metadata.annotations
