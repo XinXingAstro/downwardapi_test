@@ -29,18 +29,15 @@ public class Main {
                     if (file.exists() && !file.isDirectory()) {
                         Scanner scanner = new Scanner(file);
                         String annotation = null;
-                        while (scanner.hasNext()) {
+                        if (scanner.hasNext()) {
                             annotation = scanner.next();
-                            if (annotation.startsWith("modifytime")) break;
                         }
-                        if (annotation.startsWith("modifytime")) {
-                            long time = Long.parseLong(annotation.substring(annotation.indexOf('=') + 2, annotation.length() - 1));
-                            if (time == modifyTime) {
-                                long currentTime = System.currentTimeMillis();
-                                System.out.println("Get annotation: [" + annotation + "] Current time: [" + currentTime + "].");
-                                System.out.println("Annotation [modifytime] update to date, cost: [" + (currentTime - modifyTime) + "ms].");
-                                break;
-                            }
+                        long time = Long.parseLong(annotation != null ? annotation : "0");
+                        if (time == modifyTime) { // annotation updated
+                            long currentTime = System.currentTimeMillis();
+                            System.out.println("Get [modifytime]: [" + annotation + "] Current time: [" + currentTime + "].");
+                            System.out.println("Annotation [modifytime] update delay: [" + (currentTime - modifyTime) + "ms].");
+                            break;
                         }
                         scanner.close();
                     }

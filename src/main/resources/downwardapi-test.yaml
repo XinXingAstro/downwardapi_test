@@ -15,4 +15,4 @@ spec:
         items:
           - path: "annotations"
             fieldRef:
-              fieldPath: metadata.annotations
+              fieldPath: metadata.annotations['modifytime']
